@@ -64,6 +64,8 @@ func (c *Collection) Avg() float64 {
 			avg += float64(v.Uint())
 		case reflect.Float32, reflect.Float64:
 			avg += v.Float()
+		default:
+			panic("Unsupported operand.")
 		}
 	}
 	return avg / float64(len(c.data))
