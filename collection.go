@@ -20,7 +20,7 @@ func (c *Collection) Filter(fn func(any) bool) *Collection {
 			filtered = append(filtered, item)
 		}
 	}
-	return &Collection{data: filtered}
+	return New(filtered)
 }
 
 // Map applies a transformation function to each item in the collection and returns a new collection with the transformed items.
@@ -29,5 +29,5 @@ func (c *Collection) Map(fn func(any) any) *Collection {
 	for _, item := range c.data {
 		mapped = append(mapped, fn(item))
 	}
-	return &Collection{data: mapped}
+	return New(mapped)
 }
