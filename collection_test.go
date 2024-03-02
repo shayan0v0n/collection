@@ -90,3 +90,20 @@ func TestReject(t *testing.T) {
 	expected := []any{1, 3, 5}
 	assert.Equal(t, expected, filtered.data, "Expected filtered data to match")
 }
+
+func TestAvg(t *testing.T) {
+	// Test data
+	testData := []any{1, 2, 3, 4, 5}
+	testData1 := []any{"test", "test1"}
+
+	// Create a collection
+	c := New(testData)
+	c1 := New(testData1)
+
+	// get the average of data
+	avg := c.Avg()
+	avg1 := c1.Avg()
+
+	assert.Equal(t, 3.0, avg)
+	assert.Equal(t, 0.0, avg1)
+}

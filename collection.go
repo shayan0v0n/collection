@@ -1,5 +1,7 @@
 package collection
 
+import "reflect"
+
 // Collection represents a collection of data.
 type Collection struct {
 	data []any
@@ -45,4 +47,24 @@ func (c *Collection) Reject(fn func(any) bool) *Collection {
 		}
 	}
 	return New(filtered)
+}
+
+// Avg get the average value of a given key.
+func (c *Collection) Avg() float64 {
+	var avg float64
+	if len(c.data) == 0 {
+		return avg
+	}
+	for _, item := range c.data {
+		v := reflect.ValueOf(item)
+		switch v.Kind() {
+		case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+			avg += float64(v.Int())
+		case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
+			avg += float64(v.Uint())
+		case reflect.Float32, reflect.Float64:
+			avg += v.Float()
+		}
+	}
+	return avg / float64(len(c.data))
 }
