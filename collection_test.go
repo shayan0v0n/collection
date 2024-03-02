@@ -38,7 +38,7 @@ func TestFilter(t *testing.T) {
 
 func TestMap(t *testing.T) {
 	// Test data
-	testData := []interface{}{1, 2, 3, 4, 5}
+	testData := []any{1, 2, 3, 4, 5}
 
 	// Create a collection
 	c := New(testData)
