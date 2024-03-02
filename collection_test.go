@@ -55,3 +55,18 @@ func TestMap(t *testing.T) {
 	expected := []any{2, 4, 6, 8, 10}
 	assert.Equal(t, expected, mapped.data, "Expected mapped data to match")
 }
+
+func TestAll(t *testing.T) {
+	// Create a collection with some test data
+	testData := []interface{}{1, 2, 3, 4, 5}
+	c := New(testData)
+
+	// Call All method
+	allData := c.All()
+	filteredData := c.Filter(func(item any) bool {
+		return item.(int)%2 == 0
+	}).All()
+
+	assert.Equal(t, allData, testData)
+	assert.Equal(t, []any{2, 4}, filteredData)
+}

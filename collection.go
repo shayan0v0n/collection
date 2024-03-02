@@ -31,3 +31,8 @@ func (c *Collection) Map(fn func(any) any) *Collection {
 	}
 	return New(mapped)
 }
+
+// All returns all elements of a collection.
+func (c *Collection) All() []any {
+	return c.data
+}
