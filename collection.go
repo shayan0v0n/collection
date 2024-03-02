@@ -11,3 +11,14 @@ func New(data []any) *Collection {
 		data: data,
 	}
 }
+
+// Filter applies a filter function to the collection and returns a new filtered collection.
+func (c *Collection) Filter(fn func(any) bool) *Collection {
+	var filtered []any
+	for _, item := range c.data {
+		if fn(item) {
+			filtered = append(filtered, item)
+		}
+	}
+	return &Collection{data: filtered}
+}
