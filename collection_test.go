@@ -70,3 +70,23 @@ func TestAll(t *testing.T) {
 	assert.Equal(t, allData, testData)
 	assert.Equal(t, []any{2, 4}, filteredData)
 }
+
+func TestReject(t *testing.T) {
+	// Test data
+	testData := []any{1, 2, 3, 4, 5}
+
+	// Create a collection
+	c := New(testData)
+
+	// Filter even numbers
+	filtered := c.Reject(func(item any) bool {
+		if num, ok := item.(int); ok {
+			return num%2 == 0
+		}
+		return false
+	})
+
+	// Assert the filtered data
+	expected := []any{1, 3, 5}
+	assert.Equal(t, expected, filtered.data, "Expected filtered data to match")
+}

@@ -36,3 +36,13 @@ func (c *Collection) Map(fn func(any) any) *Collection {
 func (c *Collection) All() []any {
 	return c.data
 }
+
+func (c *Collection) Reject(fn func(any) bool) *Collection {
+	var filtered []any
+	for _, item := range c.data {
+		if !fn(item) {
+			filtered = append(filtered, item)
+		}
+	}
+	return New(filtered)
+}
