@@ -22,3 +22,12 @@ func (c *Collection) Filter(fn func(any) bool) *Collection {
 	}
 	return &Collection{data: filtered}
 }
+
+// Map applies a transformation function to each item in the collection and returns a new collection with the transformed items.
+func (c *Collection) Map(fn func(any) any) *Collection {
+	var mapped []any
+	for _, item := range c.data {
+		mapped = append(mapped, fn(item))
+	}
+	return &Collection{data: mapped}
+}
