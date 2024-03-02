@@ -39,6 +39,7 @@ func (c *Collection) All() []any {
 	return c.data
 }
 
+// Reject applies a filtering function to each item in the collection and returns a new collection with the items for which the function returns false.
 func (c *Collection) Reject(fn func(any) bool) *Collection {
 	var filtered []any
 	for _, item := range c.data {
@@ -49,7 +50,7 @@ func (c *Collection) Reject(fn func(any) bool) *Collection {
 	return New(filtered)
 }
 
-// Avg get the average value of a given key.
+// Avg calculates the average of numeric elements in the Collection.
 func (c *Collection) Avg() float64 {
 	var avg float64
 	if len(c.data) == 0 {
